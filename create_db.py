@@ -2,7 +2,7 @@ import os
 import pandas as pd
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyMuPDFLoader
-from langchain_community.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain.docstore.document import Document
 
@@ -54,13 +54,14 @@ def create_or_load_chroma_db():
 
         # Create the vector store and persist it automatically
         print("Creating vector store")
-        db = Chroma.from_documents(
-            all_docs, embeddings, persist_directory=persistent_directory)
+        db = FAISS.from_documents(all_docs, embeddings)
+        db.save_local("faiss_index")
         print("\n--- Finished creating vector store ---")
 
     else:
         print("Vector store already exists. No need to initialize.")
         # Load the existing vector store with the embedding function
-        db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
+        #db = Chroma(persist_directory=persistent_directory, embedding_function=embeddings)
+        db = FAISS.load_local("faiss_index", embeddings)
 
     return db
