@@ -55,7 +55,7 @@ def create_or_load_chroma_db():
         # Create the vector store and persist it automatically
         print("Creating vector store")
         db = Chroma.from_documents(
-            all_docs, embeddings)
+            all_docs, embeddings, persist_directory=persistent_directory)
         print("\n--- Finished creating vector store ---")
 
     else:
