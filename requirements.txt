@@ -12,3 +12,4 @@ PyPDF2
 streamlit
 streamlit-chat
 streamlit-chat-widget
+faiss-cpu
