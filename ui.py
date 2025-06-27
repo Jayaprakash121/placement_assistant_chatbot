@@ -4,7 +4,7 @@ from streamlit_chat import message
 from dotenv import load_dotenv
 from PyPDF2 import PdfReader
 from langchain_core.messages import HumanMessage, SystemMessage
-from main import rag_chain
+from main import get_rag_chain
 
 st.set_page_config(page_title="Placement Assistant", layout="wide")
 
@@ -78,7 +78,10 @@ user_input = st.chat_input(
 #user = chat_input_widget()
 #with bottom():
 
+model_name = st.session_state.get("model_name", "gemini-2.0-flash")
+api_key = st.session_state.get("gemini_api_key", os.getenv("GOOGLE_API_KEY"))
 
+rag_chain = get_rag_chain(model_name=model_name, api_key=api_key)
 
 # Step 2: Capture input and immediately display user message
 if user_input:
