@@ -1,0 +1,14 @@
+python-dotenv
+pyMuPDF
+langchain 
+langchain-community 
+langchain-anthropic 
+langchain-google-genai
+chromadb
+sentence-transformers
+langchain-huggingface
+langchain-chroma
+PyPDF2
+streamlit
+streamlit-chat
+streamlit-chat-widget
