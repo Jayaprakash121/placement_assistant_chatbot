@@ -80,3 +80,5 @@ def get_rag_chain(model_name="gemini-2.0-flash", api_key=None):
 
     # Create a retrieval chain that combines the history-aware retriever and the question answering chain
     rag_chain = create_retrieval_chain(history_aware_retriever, question_answer_chain)
+
+    return rag_chain
